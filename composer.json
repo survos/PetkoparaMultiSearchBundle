@@ -1,7 +1,7 @@
 {
     "name": "petkopara/multi-search-bundle",
     "description": "Symfony bundle for Multi Criteria Search for doctrine entities using Form or Service.",
-    "keywords": ["multi-search","criteria", "query builder", "symfony3", "doctrine"],
+    "keywords": ["multi-search","criteria", "query builder", "symfony", "doctrine"],
     "type": "symfony-bundle",
     "homepage": "https://github.com/petkopara/PetkoparaMultiSearchBundle",
     "license": "MIT",
@@ -11,12 +11,17 @@
             "email": "petkopara@gmail.com"
         }
     ],
+    "prefer-stable": true,
     "require": {
-        "symfony/form": "^2.8|^3.0|^4.0|^5.0",
-        "doctrine/orm": "^2.5"
+        "php": "^7.4 || ^8.0",
+        "doctrine/annotations": "^1.13.2",
+        "doctrine/common": "^3.2.1",
+        "doctrine/orm": "^2.5",
+        "symfony/form": "^4.4|^5.4|^6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "^9.5",
+        "symfony/cache": "^6.0"
     },
     "minimum-stability": "dev",
     "autoload": {
@@ -29,7 +34,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     }
 }

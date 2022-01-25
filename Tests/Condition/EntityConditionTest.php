@@ -10,14 +10,16 @@ use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\Setup;
 use Petkopara\MultiSearchBundle\Condition\EntityConditionBuilder;
 use Petkopara\MultiSearchBundle\Condition\FormConditionBuilder;
-use PHPUnit_Framework_TestCase;
+use \PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormConfigInterface;
 
 /**
  * Test of EntityCondition class
  *
  * @author Petkov Petkov <petkopara@gmail.com>
  */
-class EntityConditionTest extends PHPUnit_Framework_TestCase
+class EntityConditionTest extends \PHPUnit\Framework\TestCase
 {
 
     protected static $em;
@@ -92,11 +94,16 @@ class EntityConditionTest extends PHPUnit_Framework_TestCase
         $searchFields = array('name');
         $comparisonType = 'wildcard';
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')
+        $form = $this->getMockBuilder(Form::class)
                 ->disableOriginalConstructor()
-                ->setMethods(array('getData', 'getConfig', 'getOption'))
+//                ->onlyMethods(['getData','getConfig'])
+                ->addMethods(array('getOption'))
                 ->getMock();
-        $form->expects($this->any())->method('getData')->will($this->returnValue($searchTerm));
+
+
+//        $form->expects($this->any())->method('getConfig')->will($this->returnSelf());
+
+//        $form->expects($this->any())->method('getData')->will($this->returnValue($searchTerm));
         $form->expects($this->any())->method('getOption')
                 ->with($this->logicalOr(
                                 $this->equalTo('search_comparison_type'), $this->equalTo('class'), $this->equalTo('search_fields')
